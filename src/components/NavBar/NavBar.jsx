@@ -1,7 +1,7 @@
 import "./navbar.css";
-import Signup from "../../pages/Signup/Signup";
-import Login from "../../pages/Login/Login";
-import ChangePassword from "../../pages/ChangePassword/ChangePassword";
+import Signup from "../Signup/Signup";
+import Login from "../Login/Login";
+import ChangePassword from "../ChangePassword/ChangePassword";
 import { ChevronLeft } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
