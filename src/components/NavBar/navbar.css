@@ -17,6 +17,7 @@
 .navbar-title {
   color: black;
   font-size: 1.75em;
+  margin-left: 1em
 }
 
 .navbar-username {
@@ -35,6 +36,7 @@
   position: relative;
   align-items: center;
   gap: 2em;
+  margin-right: 4.5em;
 }
 
 .nav-button {

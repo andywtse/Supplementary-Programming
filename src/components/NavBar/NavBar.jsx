@@ -9,16 +9,13 @@ const NavBar = ({
   user,
   handleLogout,
   handleSignupOrLogin,
-  handleSideBarOpen,
-  handleSideBarClose,
-  open,
 }) => {
   return (
     <>
       {user ? (
         <nav className=" navbar-container |">
           <div className="navbar-tabs-container">
-            <Link className="navbar-title  nav-button rounded" to="/">Supplementary Programming</Link>
+            <Link className="navbar-title nav-button rounded" to="/">Supplementary Programming</Link>
             <Link className="nav-button rounded" to="/learning">Learning</Link>
             <Link className="nav-button rounded" to="/challenges">Challenges</Link>
             <Link className="nav-button rounded" to="/resources">Resources</Link>
@@ -37,34 +34,18 @@ const NavBar = ({
               <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
             </div>
           </div>
-          <div
-            className="app-toggle-sidebar-container"
-            style={open ? { display: "none" } : { display: "flex" }}
-          >
-            <div
-              className="app-toggle-sidebar | group"
-              onClick={
-                open ? () => handleSideBarClose() : () => handleSideBarOpen()
-              }
-            >
-              <ChevronLeft fontSize="large" />
-              <span className="sidebar-tooltip | group-hover:scale-100 scale-0">
-                Open Sidebar
-              </span>
-            </div>
-          </div>
         </nav>
       ) : (
         <nav className=" navbar-container |">
           <h1 className="navbar-title | text-2xl">Supplementary Programming</h1>
-          <ul className="navbar-buttons-container">
-            <li>
+          <div className="navbar-buttons-container">
+            <div>
               <Login handleSignupOrLogin={handleSignupOrLogin} />
-            </li>
-            <li>
+            </div>
+            <div>
               <Signup handleSignupOrLogin={handleSignupOrLogin} />
-            </li>
-          </ul>
+            </div>
+          </div>
         </nav>
       )}
     </>

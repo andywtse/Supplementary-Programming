@@ -42,9 +42,6 @@ const App = () => {
         user={user}
         handleSignupOrLogin={handleSignupOrLogin}
         handleLogout={handleLogout}
-        handleSideBarOpen={handleSideBarOpen}
-        handleSideBarClose={handleSideBarClose}
-        open={open}
       />
       <Routes>
         <Route
@@ -53,13 +50,13 @@ const App = () => {
         <Route
           path="/learning"
           element={<Learning />} />
-          <Route
+        <Route
           path="/challenges"
           element={<Challenges />} />
-          <Route
+        <Route
           path="/resources"
           element={<Resources />} />
-          <Route
+        <Route
           path="/jobsites"
           element={<JobSites />} />
       </Routes>
