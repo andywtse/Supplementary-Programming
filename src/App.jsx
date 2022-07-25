@@ -7,6 +7,7 @@ import Learning from './pages/Learning/Learning'
 import Challenges from './pages/Challenges/Challenges'
 import Resources from './pages/Resources/Resources'
 import JobSites from './pages/JobSite/JobSites'
+import AddLearnCard from './pages/Learning/AddLearnCard'
 
 
 
@@ -60,6 +61,9 @@ const App = () => {
           <Route
           path="/jobsites"
           element={<JobSites />} />
+          <Route
+          path="/add-learn-card"
+          element={<AddLearnCard />} />
       </Routes>
     </>
   )
