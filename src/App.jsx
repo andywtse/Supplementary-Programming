@@ -10,21 +10,38 @@ import * as authService from './services/authService'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
+  const [open, setOpen] = useState(true);
+
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    authService.logout()
-    setUser(null)
-    navigate('/')
-  }
+    authService.logout();
+    setUser(null);
+    navigate("/");
+  };
 
   const handleSignupOrLogin = () => {
-    setUser(authService.getUser())
+    setUser(authService.getUser());
+  };
+
+  function handleSideBarClose() {
+    setOpen(false);
+  }
+
+  function handleSideBarOpen() {
+    setOpen(true);
   }
 
   return (
     <>
-      <NavBar user={user} handleLogout={handleLogout} />
+      <NavBar
+        user={user}
+        handleSignupOrLogin={handleSignupOrLogin}
+        handleLogout={handleLogout}
+        handleSideBarOpen={handleSideBarOpen}
+        handleSideBarClose={handleSideBarClose}
+        open={open}
+      />
       <Routes>
         <Route path="/" element={<Landing user={user} />} />
         <Route
