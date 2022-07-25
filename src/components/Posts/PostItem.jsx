@@ -32,12 +32,12 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost }) => {
           <div className="post-item-vertical-line"></div>
         </div>
         <div className="post-item-description">
-          <h2 className="post-item-title | text-sm" >
-            {post.title} post.title
-          </h2>
-          <h1 className="post-item-post-name | text-base">
-            {post.content} post.body
+          <h1 className="post-item-title | text-lg" >
+            TITLE: {post.title}
           </h1>
+          <h2 className="post-item-post-name | text-sm">
+            CONTENT: {post.content}
+          </h2>
         </div>
       </div>
       <Modal
