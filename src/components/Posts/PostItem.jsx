@@ -33,10 +33,10 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost }) => {
         </div>
         <div className="post-item-description">
           <h2 className="post-item-title | text-sm" >
-            {post.title}
+            {post.title} post.title
           </h2>
           <h1 className="post-item-post-name | text-base">
-            {post.body}
+            {post.content} post.body
           </h1>
         </div>
       </div>
@@ -57,12 +57,12 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost }) => {
               <span className='form-header'>               
                 Edit {post.title}
               </span>
-              <button onClick={() => handleDeletePost(post._id)}>
-                DELETE
-              </button>
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               <EditPost handleUpdatePost={handleUpdatePost} post={post} />
+              <button onClick={() => handleDeletePost(post._id)}>
+                DELETE
+              </button>
             </Typography>
           </Box>
         </Fade>
