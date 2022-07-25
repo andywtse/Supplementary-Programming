@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import * as authService from './services/authService'
 
 import './App.css'
 
+import PostBoard from './components/Posts/PostBoard'
 import NavBar from './components/NavBar/NavBar'
 import Landing from './pages/Landing/Landing'
 import Learning from './pages/Learning/Learning'
@@ -14,8 +15,6 @@ import JobSites from './pages/JobSite/JobSites'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
-  const [open, setOpen] = useState(true);
-
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -27,14 +26,6 @@ const App = () => {
   const handleSignupOrLogin = () => {
     setUser(authService.getUser());
   };
-
-  function handleSideBarClose() {
-    setOpen(false);
-  }
-
-  function handleSideBarOpen() {
-    setOpen(true);
-  }
 
   return (
     <>
