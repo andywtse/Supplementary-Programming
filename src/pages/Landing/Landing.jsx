@@ -1,9 +1,10 @@
-import styles from './Landing.module.css'
+//import styles from './Landing.module.css'
+import PostBoard from "../../components/Posts/PostBoard"
 
 const Landing = ({ user }) => {
   return (
-    <main className={styles.container}>
-      <h1>hello, {user ? user.name : 'friend'}</h1>
+    <main>
+      <PostBoard user={user} />
     </main>
   )
 }
