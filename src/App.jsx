@@ -1,60 +1,65 @@
 import { useState } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
-import NavBar from './components/NavBar/NavBar'
-import Signup from './pages/Signup/Signup'
-import Login from './pages/Login/Login'
-import Landing from './pages/Landing/Landing'
-import Profiles from './pages/Profiles/Profiles'
-import Learning from './pages/Learning/Learning'
-import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
+import NavBar from './components/NavBar/NavBar'
+import Landing from './pages/Landing/Landing'
+import Learning from './pages/Learning/Learning'
+import Challenges from './pages/Challenges/Challenges'
+import Resources from './pages/Resources/Resources'
+import JobSites from './pages/JobSite/JobSites'
+
 
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
+  const [open, setOpen] = useState(true);
+
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    authService.logout()
-    setUser(null)
-    navigate('/')
-  }
+    authService.logout();
+    setUser(null);
+    navigate("/");
+  };
 
   const handleSignupOrLogin = () => {
-    setUser(authService.getUser())
+    setUser(authService.getUser());
+  };
+
+  function handleSideBarClose() {
+    setOpen(false);
+  }
+
+  function handleSideBarOpen() {
+    setOpen(true);
   }
 
   return (
     <>
-      <NavBar user={user} handleLogout={handleLogout} />
+      <NavBar
+        user={user}
+        handleSignupOrLogin={handleSignupOrLogin}
+        handleLogout={handleLogout}
+        handleSideBarOpen={handleSideBarOpen}
+        handleSideBarClose={handleSideBarClose}
+        open={open}
+      />
       <Routes>
-        <Route path="/" element={<Landing user={user} />} />
         <Route
-          path="/signup"
-          element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
-        />
+          path="/"
+          element={<Landing user={user} />} />
         <Route
-          path="/login"
-          element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
-        />
-        <Route
-          path="/profiles"
-          element={user ? <Profiles /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/changePassword"
-          element={
-            user ? (
-              <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        <Route 
-        path="/learn" 
-        element={<Learning/>} 
-        />
+          path="/learning"
+          element={<Learning />} />
+          <Route
+          path="/challenges"
+          element={<Challenges />} />
+          <Route
+          path="/resources"
+          element={<Resources />} />
+          <Route
+          path="/jobsites"
+          element={<JobSites />} />
       </Routes>
     </>
   )

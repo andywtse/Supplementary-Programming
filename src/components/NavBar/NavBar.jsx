@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import '../NavBar/NavBar.css'
+import '../NavBar/navbar.css'
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,8 +8,21 @@ import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import Signup from "../../pages/Signup/Signup";
+import Login from "../../pages/Login/Login";
+import ChangePassword from "../../pages/ChangePassword/ChangePassword";
+import { ChevronLeft } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
-const NavBar = ({ user, handleLogout }) => {
+const NavBar = ({
+  user,
+  handleLogout,
+  handleSignupOrLogin,
+  handleSideBarOpen,
+  handleSideBarClose,
+  open,
+}) => {
+
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -27,14 +39,24 @@ const NavBar = ({ user, handleLogout }) => {
   };
 
   return (
+    <>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/profiles">Community</Link>
+          <Link className="navbar-title  nav-button rounded" to="/">Supplementary Programming</Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/learn"> Learn</Link>
+          <Link className="nav-button rounded" to="/challenges">Challenges</Link>
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link to="/learning"> Learn</Link>
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Link className="nav-button rounded" to="/resources">Resources</Link>
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Link className="nav-button rounded" to="/jobsites">Job Sites</Link>
           </Typography>
             <div>
               <IconButton
@@ -62,7 +84,6 @@ const NavBar = ({ user, handleLogout }) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-            
                 <MenuItem onClick={handleClose}><Link to="/signup">Sign Up</Link></MenuItem>
                 <MenuItem onClick={handleClose}><Link to="/login">Log In</Link></MenuItem>
                 <MenuItem onClick={handleClose}><Link to="" onClick={handleLogout}>LOG OUT</Link></MenuItem>
@@ -71,8 +92,9 @@ const NavBar = ({ user, handleLogout }) => {
             </div>
         </Toolbar>
       </AppBar>
-    </Box>
-  );
-}
+    </Box> 
+     </>
+  )}
 
-export default NavBar
+
+  export default NavBar;
