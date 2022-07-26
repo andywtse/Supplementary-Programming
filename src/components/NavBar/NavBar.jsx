@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import Login from '../../pages/Credentials/Login/Login'
 import Signup from '../../pages/Credentials/Signup/Signup'
 import ChangePassword from '../../pages/Credentials/ChangePassword/ChangePassword'
+import AddPage from '../Container/AddPageModal';
 
-const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages }) => {
-
+const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages, handleAddPage, handleRemovePage }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -98,13 +98,24 @@ const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages }) => {
                   <Link className="nav-button rounded" to="/jobsites">Job Sites</Link>
                 </Typography>
               </MenuItem>
-              {/* {pages.map((page, idx) => (
-                <MenuItem key={idx} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link className="nav-button rounded" to={page.title}>{page.title}</Link>
-                  </Typography>
-                </MenuItem>
-              ))} */}
+              {pages ?
+                <>
+                  {pages.map((page, idx) => (
+                    <MenuItem key={idx} onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">
+                        <Link className="nav-button rounded" to={page.title}>{page.title}</Link>
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </>
+                :
+                ""
+              }
+              <MenuItem key='add'>
+                <Typography textAlign="center" component={'span'}>
+                  <AddPage handleAddPage={handleAddPage} />
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -146,15 +157,24 @@ const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages }) => {
                 <Link className="nav-button rounded" to="/jobsites">Job Sites</Link>
               </Typography>
             </MenuItem>
-            {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))} */}
+            {pages ?
+              <>
+                {pages.map((page, idx) => (
+                  <MenuItem key={idx} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      <Link className="nav-button rounded" to={page.title}>{page.title}</Link>
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </>
+              :
+              ""
+            }
+            <MenuItem key='add'>
+              <Typography textAlign="center" component={'span'}>
+                <AddPage handleAddPage={handleAddPage} />
+              </Typography>
+            </MenuItem>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
