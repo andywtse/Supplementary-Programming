@@ -7,3 +7,23 @@ main {
   padding: 2em;
   overflow: auto;
 }
+
+.page-header-container {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.page-header-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.page-option-menu {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

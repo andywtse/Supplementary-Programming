@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 //* Package Imports *//
-import { Modal, Box, Typography } from "@mui/material";
+import { Modal, Box, Typography, Button } from "@mui/material";
 
-const AddPageModal = ({handleAddPage}) => {
+const AddSectionModal = props => {
 
   const style = {
     position: "absolute",
@@ -44,15 +43,18 @@ const AddPageModal = ({handleAddPage}) => {
 
   const handleSubmit = async evt => {
     evt.preventDefault()
-    handleAddPage(formData)
+    props.handleAddPage(formData)
     handleClose()
   }
 
   return (
     <div>
-      <button className='nav-button | flex justify-center items-center text-base rounded px-5 py-1' onClick={handleOpen}>
-        <AddCircleOutlineIcon/>
-      </button>
+      <Button
+        sx={{ p: 0 }}
+        onClick={handleOpen}
+      >
+        Add New Section
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -61,7 +63,7 @@ const AddPageModal = ({handleAddPage}) => {
       >
         <Box sx={style}>
           <Typography id='modal-modal-title' variant='h6' component='h2'>
-            Add New Page
+            Add New Section
           </Typography>
           <Typography>
             {message}
@@ -107,4 +109,4 @@ const AddPageModal = ({handleAddPage}) => {
 
 }
 
-export default AddPageModal
+export default AddSectionModal

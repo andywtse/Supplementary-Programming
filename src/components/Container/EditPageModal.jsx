@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { useNavigate } from 'react-router-dom'
 
 //* Package Imports *//
-import { Modal, Box, Typography } from "@mui/material";
+import { Modal, Box, Typography, Button } from "@mui/material";
 
-const AddPageModal = ({handleAddPage}) => {
+const EditPageModal = ({ page, handleUpdatePage }) => {
 
   const style = {
     position: "absolute",
@@ -16,43 +16,33 @@ const AddPageModal = ({handleAddPage}) => {
     color: "white",
   };
 
-  const [message, setMessage] = useState([''])
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-  })
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState(page)
 
   // MUI
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setFormData({
-      title: '',
-      description: '',
-    })
-    setOpen(false);
-  }
-
-  const updateMessage = msg => {
-    setMessage(msg)
-  }
+  const handleClose = () => setOpen(false);
 
   const handleChange = e => {
-    updateMessage('')
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async evt => {
     evt.preventDefault()
-    handleAddPage(formData)
+    handleUpdatePage(formData)
     handleClose()
+    navigate(`/${formData.title}`)
   }
 
   return (
     <div>
-      <button className='nav-button | flex justify-center items-center text-base rounded px-5 py-1' onClick={handleOpen}>
-        <AddCircleOutlineIcon/>
-      </button>
+      <Button
+        sx={{ p: 0 }}
+        onClick={handleOpen}
+      >
+        Edit Page Details
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -61,10 +51,7 @@ const AddPageModal = ({handleAddPage}) => {
       >
         <Box sx={style}>
           <Typography id='modal-modal-title' variant='h6' component='h2'>
-            Add New Page
-          </Typography>
-          <Typography>
-            {message}
+            Edit Page Details
           </Typography>
           <Typography id='modal-modal-description' component={'span'} sx={{ mt: 2 }}>
             <form className="flex flex-col gap-6 pt-4" onSubmit={handleSubmit}>
@@ -107,4 +94,4 @@ const AddPageModal = ({handleAddPage}) => {
 
 }
 
-export default AddPageModal
+export default EditPageModal

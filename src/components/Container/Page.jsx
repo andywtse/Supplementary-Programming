@@ -1,8 +1,10 @@
-import { Box, Button, Menu, MenuItem, Tooltip, Typography } from "@mui/material"
+import { Box, Button, Menu, MenuItem, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 import * as pageService from '../../services/pageService'
+import AddSectionModal from "./AddSectionModal"
+import EditPageModal from "./EditPageModal"
 
-const Pages = ({ page }) => {
+const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
 
   const [sections, setSections] = useState()
 
@@ -24,21 +26,28 @@ const Pages = ({ page }) => {
     fetchAllSections()
   }, [])
 
+  const handleAddPage = async (formData) => {
+    const newSection = await pageService.createSection(formData)
+    setSections([...sections, newSection])
+  }
+
   return (
     <main>
+
+
       <div>
         <Box sx={{ flexGrow: 0 }}>
-          <div>
-            <h1>{page.title}</h1>
-            <Tooltip title="Open settings">
+          <div className="page-header-container">
+            <h1 className="page-header-title">{page.title}</h1>
+            <div className="page-option-menu">
               <Button
-                sx={{ my: 2, color: 'black', display: 'block' }}
+                sx={{ my: 2, color: 'black' }}
                 onClick={handleOpenUserMenu}>
                 <span className="text-lg">Options</span>
               </Button>
-            </Tooltip>
-          </div>
+            </div>
 
+          </div>
           <Menu
             sx={{ mt: '45px' }}
             id="menu-appbar"
@@ -55,18 +64,23 @@ const Pages = ({ page }) => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-
-            <MenuItem key='changepassword' onClick={handleCloseUserMenu}>
+            <MenuItem key='add-section-modal' onClick={handleCloseUserMenu}>
               <Typography textAlign="center" component={'span'}>
-                UPDATE
+                <AddSectionModal handleAddPage={handleAddPage}/>
               </Typography>
             </MenuItem>
-            <MenuItem key='logout' onClick={handleCloseUserMenu}>
+            <MenuItem key='edit-page-modal' onClick={handleCloseUserMenu}>
+              <Typography textAlign="center" component={'span'}>
+                <EditPageModal page={page} handleUpdatePage={handleUpdatePage}/>
+              </Typography>
+            </MenuItem>
+            <MenuItem key='delete-page' onClick={handleCloseUserMenu}>
               <Typography textAlign="center" component={'span'}>
                 <Button
-                  sx={{ p: 0 }}
+                  sx={{ p: 0, color: 'red' }}
+                  onClick={()=>handleDeletePage(page._id)}
                 >
-                  DELETE
+                  Delete Current Page
                 </Button>
               </Typography>
             </MenuItem>

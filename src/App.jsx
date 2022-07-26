@@ -40,6 +40,22 @@ const App = () => {
     setPages([...pages, newPage])
   }
 
+  const handleUpdatePage = async (updatedPageData) => {
+    const newPage = await pageService.updatePage(updatedPageData);
+    const newPageDataArray = pages.map((page) =>
+      page._id === newPage._id ? newPage : page
+    );
+    setPages([...newPageDataArray]);
+  };
+
+  const handleDeletePage = async (pageId) => {
+    const deletedPage = await pageService.deletePage(pageId);
+    const newPagesArray = pages.filter(
+      (page) => page._id !== deletedPage._id
+    );
+    setPages(newPagesArray);
+  }
+
   return (
     <>
       <NavBar
@@ -70,7 +86,13 @@ const App = () => {
             <Route
               path={`/${page.title}`}
               key={page.title}
-              element={<Page page={page} />} />
+              element={
+                <Page
+                  page={page}
+                  handleDeletePage={handleDeletePage}
+                  handleUpdatePage={handleUpdatePage}
+                />}
+            />
           ))
           :
           ""

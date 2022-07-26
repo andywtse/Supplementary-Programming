@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Login from '../../pages/Credentials/Login/Login'
 import Signup from '../../pages/Credentials/Signup/Signup'
 import ChangePassword from '../../pages/Credentials/ChangePassword/ChangePassword'
-import AddPage from '../Container/AddPageModal';
+import AddPageModal from '../Container/AddPageModal';
 
 const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages, handleAddPage, handleRemovePage }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -113,7 +113,7 @@ const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages, handleAddPage,
               }
               <MenuItem key='add'>
                 <Typography textAlign="center" component={'span'}>
-                  <AddPage handleAddPage={handleAddPage} />
+                  <AddPageModal handleAddPage={handleAddPage} />
                 </Typography>
               </MenuItem>
             </Menu>
@@ -172,7 +172,7 @@ const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages, handleAddPage,
             }
             <MenuItem key='add'>
               <Typography textAlign="center" component={'span'}>
-                <AddPage handleAddPage={handleAddPage} />
+                <AddPageModal handleAddPage={handleAddPage} />
               </Typography>
             </MenuItem>
           </Box>
