@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 //* Package Imports *//
 import { Modal, Box, Typography, Backdrop, Fade, Card, CardActions, Button} from "@mui/material";
 //* Components *//
-import AddLearnCard from "./AddLearnCard";
+import AddLearnCard from "../../components/Learning/AddLearnCard";
 import Cards from "../../components/Card/Card"
 import LearningCard from "../../components/Learning/LearningCard"
 
@@ -47,7 +47,8 @@ const Learning = () => {
     const newLearnDataArray = learns.map((learn) =>
       learn._id === newLearnCard._id ? newLearnCard : learn
     );
-    setLearns([...newLearnDataArray]);
+    setLearns([...newLearnDataArray])
+    
   };
 
   const handleDeleteLearn = async (learnId) => {
