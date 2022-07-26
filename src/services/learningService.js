@@ -15,6 +15,18 @@ async function create(newLearnData) {
   return res.json()
 }
 
+async function update(learn) {
+  const res = await fetch(`${BASE_URL}/${learn._id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify(learn)
+  })
+	return await res.json()
+}
+
 async function getLearns() {
   const res = await fetch(BASE_URL, {
     method: 'GET',
@@ -26,4 +38,18 @@ async function getLearns() {
   return res.json()
 }
 
-export { create, getLearns }
+async function deleteLearns(id) {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+  })
+	return await res.json()
+}
+
+export { 
+  create, 
+  getLearns, 
+  update, 
+  deleteLearns }

@@ -30,9 +30,7 @@ const Learning = () => {
   useEffect(() => {
     const fetchLearnData = async () => {
       const learnData = await learningService.getLearns();
-      console.log(learnData)
       setLearns(learnData);
-      console.log(learnData)
     };
     fetchLearnData();
   }, []);
@@ -41,7 +39,24 @@ const Learning = () => {
     const newLearnCard = await learningService.create(newLearnData)
     console.log(newLearnData)
     setLearns([...learns, newLearnCard])
+    setOpen(false)
   }
+
+  const handleUpdateLearn = async (updatedLearnData) => {
+    const newLearnCard = await learningService.update(updatedLearnData);
+    const newLearnDataArray = learns.map((learn) =>
+      learn._id === newLearnCard._id ? newLearnCard : learn
+    );
+    setLearns([...newLearnDataArray]);
+  };
+
+  const handleDeleteLearn = async (learnId) => {
+    const deleteLearn = await learningService.deleteLearns(learnId);
+    const newLearnsArray = learns.filter(
+      (learn, idx) => learn._id !== deleteLearn._id
+    );
+    setLearns(newLearnsArray);
+  };
 
   return (
     <>
@@ -88,6 +103,16 @@ const Learning = () => {
             </Box>
           </Fade>
         </Modal>
+
+        {learns.map((learn, idx) =>
+        <Cards
+        key={idx}
+        learn={learn}
+        handleUpdateLearn={handleUpdateLearn}
+        handleDeleteLearn={handleDeleteLearn}
+        />
+
+        )}
     </>
   )
 }

@@ -4,13 +4,14 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import * as learningService from '../../services/learningService.js'
+
 
 
 function AddLearnCard(props) {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
+		header:'',
 		title: '',
 		description: '',
     url:'',
@@ -24,70 +25,78 @@ function AddLearnCard(props) {
 	const handleSubmit = evt => {
 		evt.preventDefault()
 	  props.handleAddLearn(formData)
-    console.log('This WORKS?')
 	}
 
- 
 
 	return (
 		<>
 			<h1>Add Puppy</h1>
 			<form autoComplete="off">
-
-      <Card sx={{ maxWidth: 275, height: 200 }}>
+      <Card sx={{ maxWidth: 275, }}>
         <CardContent>
           <div className="form-group mb-3">
+					* = (required)
+					<br/>
+					<br/>
 					  <label className="form-label">
-						Card Title (required)
+						Header*
 					</label>
 					<input 
 						type="text"
 						className="form-control"
-						id="learn-card-input"
-						name="title"
-            value={formData.name}
+						name="header"
             onChange={handleChange}
 						required
 					/>
 				</div>
         <div className="form-group mb-3">
-					<label htmlFor="breed-input" className="form-label">
-						Description
+					<label className="form-label">
+						Title*
 					</label>
-					<input 
-						type="text"
-						className="form-control"
-						id="breed-input"
-						name="description"
-            value={formData.breed}
-            onChange={handleChange}
-						required
-					/>
-				</div>
-        <div className="form-group mb-4">
-					<label htmlFor="age-input" className="form-label">
-						URL
-					</label>
-					<input 
-						type="text"
-						className="form-control"
-						id="age-input"
-						name="url"
-            value={formData.age}
-            onChange={handleChange}
-					/>
-				</div>
-        </CardContent>
+						<input 
+							type="text"
+							className="form-control"
+							name="title"
+							onChange={handleChange}
+							required
+						/>
+					</div>
+        	<div className="form-group mb-3">
+						<label className="form-label">
+							Description*
+						</label>
+							<input 
+								type="text"
+								className="form-control"
+								name="description"
+								onChange={handleChange}
+								required
+							/>
+					</div>
+        	<div className="form-group mb-4">
+						<label htmlFor="age-input" className="form-label">
+							URL
+						</label>
+							<input 
+								type="text"
+								className="form-control"
+								name="url"
+								onChange={handleChange}
+							/>
+						</div>
+        	</CardContent>
         </Card>
 			</form>
-          <button
-						type="submit"
-						className="btn btn-primary btn-fluid"
-				
-            onClick={handleSubmit}
-					>
-						Add Learn Card
-					</button>
+			<CardActions>
+        <Button 
+				size="small" 
+				type="submit"
+				className="btn btn-primary btn-fluid"
+				onClick={handleSubmit}
+				>
+					Add
+				</Button>
+      </CardActions>
 		</>
 	)
 }
