@@ -39,7 +39,6 @@ const EditPost = ({ post, handleUpdatePost }) => {
               required
               onChange={handleChange} 
             />
-            <p className="opacity-70 text-sm">Example: 9:00AM</p>
           </div>
           <div className="flex flex-col gap-2 w-2/4">
             <label htmlFor="content-input">
@@ -53,7 +52,6 @@ const EditPost = ({ post, handleUpdatePost }) => {
               onChange={handleChange} 
               required 
             />
-            <p className="opacity-70 text-sm">Example: Meeting</p>
           </div>
         </div>
         <button onClick={() => handleSubmit}>

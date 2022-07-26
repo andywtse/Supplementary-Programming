@@ -11,6 +11,7 @@ import { Modal, Box, Typography, Backdrop, Fade } from "@mui/material";
 //* Components *//
 import PostItem from "./PostItem";
 import AddPost from "./AddPost";
+import AddReply from "./AddReply";
 
 const PostBoard = ({ user }) => {
   //* Modal State and Style *//
@@ -43,7 +44,7 @@ const PostBoard = ({ user }) => {
   const handleAddPost = async (newPostData) => {
     const newPost = await postService.create(newPostData);
     setPosts([...posts, newPost]);
-    setOpen(false)
+    handleClose()
   };
 
   const handleUpdatePost = async (updatedPostData) => {
@@ -52,6 +53,7 @@ const PostBoard = ({ user }) => {
       post._id === newPost._id ? newPost : post
     );
     setPosts([...newPostDataArray]);
+    handleClose()
   };
 
   const handleDeletePost = async (postId) => {
@@ -60,6 +62,7 @@ const PostBoard = ({ user }) => {
       (post, idx) => post._id !== deletedPost._id
     );
     setPosts(newPostsArray);
+    handleClose()
   };
 
   return (
@@ -105,18 +108,17 @@ const PostBoard = ({ user }) => {
           </Fade>
         </Modal>
       </header>
-      <div className=" schedule-items-container | overflow-y-scroll flex flex-col gap-4">
-        
-          <>
-            {posts.map((post, idx) =>
-                <PostItem
-                  key={idx}
-                  post={post}
-                  handleUpdatePost={handleUpdatePost}
-                  handleDeletePost={handleDeletePost}
-                />
-            )}
-          </>
+      <div className=" schedule-items-container">
+        <>
+          {posts.map((post, idx) =>
+              <PostItem
+                key={idx}
+                post={post}
+                handleUpdatePost={handleUpdatePost}
+                handleDeletePost={handleDeletePost}
+              />
+          )}
+        </>
       </div>
     </div>
   );
