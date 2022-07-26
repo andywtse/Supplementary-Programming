@@ -46,6 +46,7 @@ function AddLearnCard(props) {
 						className="form-control"
 						name="header"
             onChange={handleChange}
+						value={formData.header}
 						required
 					/>
 				</div>
@@ -58,6 +59,7 @@ function AddLearnCard(props) {
 							className="form-control"
 							name="title"
 							onChange={handleChange}
+							value={formData.title}
 							required
 						/>
 					</div>
@@ -70,6 +72,7 @@ function AddLearnCard(props) {
 								className="form-control"
 								name="description"
 								onChange={handleChange}
+								value={formData.description}
 								required
 							/>
 					</div>
@@ -81,6 +84,7 @@ function AddLearnCard(props) {
 								type="text"
 								className="form-control"
 								name="url"
+								value={formData.url}
 								onChange={handleChange}
 							/>
 						</div>
