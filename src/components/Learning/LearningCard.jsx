@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 
 
 export default function LearningCard() {
+
+
   return (
     <>
     <Card sx={{ maxWidth: 275, height: 200 }}>
@@ -30,11 +32,7 @@ export default function LearningCard() {
     </Card>
     <>
     </>
-    <Card sx={{ maxWidth: 275, height: 200 }}>
-      <CardActions>
-        <Button size="small" component="a" href="/add-learn-card" >+ ADD NEW CARD</Button>
-      </CardActions>
-    </Card>
+   
     
     </>
   );

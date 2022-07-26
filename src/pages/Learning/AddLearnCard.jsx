@@ -12,7 +12,7 @@ function AddLearnCard(props) {
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
 		title: '',
-		body: '',
+		description: '',
     url:'',
 	})
 
@@ -27,15 +27,12 @@ function AddLearnCard(props) {
     console.log('This WORKS?')
 	}
 
-
-  useEffect(() => {
-		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
-	}, [formData])
+ 
 
 	return (
 		<>
 			<h1>Add Puppy</h1>
-			<form autoComplete="off" ref={formElement}>
+			<form autoComplete="off">
 
       <Card sx={{ maxWidth: 275, height: 200 }}>
         <CardContent>
@@ -86,7 +83,7 @@ function AddLearnCard(props) {
           <button
 						type="submit"
 						className="btn btn-primary btn-fluid"
-						disabled={!validForm}
+				
             onClick={handleSubmit}
 					>
 						Add Learn Card
