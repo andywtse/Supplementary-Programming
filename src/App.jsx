@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import './App.css'
 import * as authService from './services/authService'
 import NavBar from './components/NavBar/NavBar'
 import Landing from './pages/Landing/Landing'

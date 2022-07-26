@@ -1,4 +1,3 @@
-//import styles from './Landing.module.css'
 import PostBoard from "../../components/Posts/PostBoard"
 
 const Landing = ({ user }) => {

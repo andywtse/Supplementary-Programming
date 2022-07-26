@@ -1,0 +1,76 @@
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2em;
+  height: 10vh;
+  padding-left: 2em;
+  color: black;
+}
+
+.navbar-title-container {
+  display: flex;
+  gap: 2em;
+  align-items: flex-end;
+}
+
+.navbar-title {
+  color: black;
+  font-size: 1.75em;
+  margin-left: 1em
+}
+
+.navbar-username {
+  font-size: 1.25em;
+}
+
+.navbar-tabs-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 2em;
+}
+
+.navbar-buttons-container {
+  display: inline-flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  gap: 2em;
+  margin-right: 4.5em;
+}
+
+.nav-button {
+  padding: .25em .5em;
+  background-color: #ffffff18;
+  transition: .5s;
+}
+
+.nav-button:hover {
+  background-color: #6376966d;
+  transition: .5s;
+}
+
+.app-toggle-sidebar-container {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  margin-right: 2em;
+  right: 0;
+}
+
+.app-toggle-sidebar {
+  display: flex;
+  height: 40px;
+  width: 40px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.109);
+  color: var(--soft-yellow);
+  cursor: pointer;
+  opacity: 1;
+}

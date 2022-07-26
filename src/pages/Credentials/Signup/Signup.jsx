@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as authService from "../../services/authService";
+import * as authService from "../../../services/authService";
 
 //* Package Imports *//
 import { Modal, Box, Typography, Fade, Backdrop } from "@mui/material";
@@ -24,7 +24,7 @@ const Signup = (props) => {
     email: "",
     password: "",
     passwordConf: "",
-    location: "",
+    code: "",
   });
 
   // MUI
@@ -36,7 +36,7 @@ const Signup = (props) => {
       email: "",
       password: "",
       passwordConf: "",
-      location: "",
+      code: "",
     });
     setOpen(false);
   };
@@ -45,7 +45,7 @@ const Signup = (props) => {
     setMessage(msg);
   };
 
-  const { name, email, password, passwordConf, location } = formData;
+  const { name, email, password, passwordConf } = formData;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,7 +72,6 @@ const Signup = (props) => {
     return !(
       name &&
       email &&
-      location &&
       password &&
       password === passwordConf
     );
@@ -165,15 +164,14 @@ const Signup = (props) => {
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="category-input">
-                      City <span>*</span>
+                      Admin Code
                     </label>
                     <input
                       type="text"
-                      placeholder="City"
-                      name="location"
-                      value={formData.location}
+                      placeholder="Admin Code"
+                      name="code"
+                      value={formData.code}
                       onChange={handleChange}
-                      required
                     />
                   </div>
                 </div>

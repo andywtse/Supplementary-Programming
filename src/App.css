@@ -1,0 +1,9 @@
+main {
+  background-color: rgba(245,245,220,0.3);
+  border-radius: 10px;
+  border: 1px solid rgba( 212, 175, 55, .8 );
+  height: 80vh;
+  margin: 2em 5em;
+  padding: 2em;
+  overflow: auto;
+}

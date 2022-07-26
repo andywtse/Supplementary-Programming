@@ -60,7 +60,7 @@ const Learning = () => {
   };
 
   return (
-    <>
+    <main>
       <h1>
         Front End Learning
       </h1>
@@ -114,8 +114,8 @@ const Learning = () => {
         />
 
         )}
-    </>
+    </main>
   )
 }
- 
+
 export default Learning
