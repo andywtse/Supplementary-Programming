@@ -47,9 +47,23 @@ async function getAll() {
   return await res.json()
 }
 
+async function createReply(newReplyData, id) {
+  console.log(newReplyData)
+  const res = await fetch(`${SERVER_URL}/${id}/replies`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify(newReplyData)
+  })
+	return await res.json()
+}
+
 export {
 	create,
   update,
   getAll,
   deletePost,
+  createReply
 }

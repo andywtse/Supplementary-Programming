@@ -6,8 +6,12 @@ import { Modal, Box, Typography, Backdrop, Fade } from '@mui/material'
 
 //* Components *//
 import EditPost from "./EditPost"
+import AddReply from "./AddReply"
 
-const PostItem = ({ post, handleUpdatePost, handleDeletePost }) => {
+const PostItem = ({post, handleUpdatePost, handleDeletePost, handleAddReply }) => {
+
+  
+
   //* Modal State & Style *//
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
@@ -55,7 +59,7 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost }) => {
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
               <span className='form-header'>               
-                Edit {post.title}
+                {post.title}
               </span>
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
@@ -63,11 +67,18 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost }) => {
               <button onClick={() => handleDeletePost(post._id)}>
                 DELETE
               </button>
+              <AddReply post={post} handleAddReply={handleAddReply}/>
+              <div className=" replies-container">
+                <>
+                  {/* {post.replies.map((reply, idx))} */}
+                </>
+              </div>
             </Typography>
           </Box>
         </Fade>
       </Modal>
     </>
+  // <AddReply handleAddReply={handleAddReply} post={post} />
   )
 }
 

@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import * as authService from './services/authService'
-import PostBoard from './components/Posts/PostBoard'
 import NavBar from './components/NavBar/NavBar'
 import Landing from './pages/Landing/Landing'
 import Learning from './pages/Learning/Learning'
 import Challenges from './pages/Challenges/Challenges'
 import Resources from './pages/Resources/Resources'
 import JobSites from './pages/JobSite/JobSites'
+import AddReply from './components/Posts/AddReply'
 
 
 const App = () => {
@@ -60,6 +60,9 @@ const App = () => {
           <Route
           path="/jobsites"
           element={<JobSites />} />
+          <Route
+          path="/replies"
+          element={<AddReply />} />
       </Routes>
     </>
   )
