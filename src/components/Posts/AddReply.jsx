@@ -1,7 +1,7 @@
 //* React Hooks *//
 import { useState, useRef, useEffect } from 'react'
 
-const AddReply = ({ handleAddReply, post }) => {
+const AddReply = ({ post, handleAddReply }) => {
   //* State *//
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({

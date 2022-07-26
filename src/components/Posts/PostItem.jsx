@@ -1,3 +1,5 @@
+import * as postService from "../../services/postsService";
+
 //* React Hooks *//
 import { useState } from "react"
 
@@ -6,11 +8,12 @@ import { Modal, Box, Typography, Backdrop, Fade } from '@mui/material'
 
 //* Components *//
 import EditPost from "./EditPost"
-import AddReply from "./AddReply"
+import ReplyButton from "./ReplyButton"
+import ReplyItem from "./ReplyItem"
 
-const PostItem = ({post, handleUpdatePost, handleDeletePost, handleAddReply }) => {
+const PostItem = ({post, handleUpdatePost, handleDeletePost }) => {
 
-  
+  const [replies,setReplies] = useState([])
 
   //* Modal State & Style *//
   const [open, setOpen] = useState(false)
@@ -25,17 +28,26 @@ const PostItem = ({post, handleUpdatePost, handleDeletePost, handleAddReply }) =
     p: 4,
     color: 'white',
   }
+
+
+  const handleAddReply = async (newReplyData, id) => {
+    console.log(newReplyData)
+    const newReply = await postService.createReply(newReplyData, id);
+    setReplies([...replies, newReply]);
+    handleClose()
+  };
   
   return (
     <>
       <div 
         className="post-item | flex w-full justify-between items-start"
-        onClick={handleOpen}
-      >
+        >
         <div className="post-item-divider-container | flex items-center justify-center">
           <div className="post-item-vertical-line"></div>
         </div>
-        <div className="post-item-description">
+        <div className="post-item-description"
+        onClick={handleOpen}
+        >
           <h1 className="post-item-title | text-lg" >
             TITLE: {post.title}
           </h1>
@@ -43,6 +55,16 @@ const PostItem = ({post, handleUpdatePost, handleDeletePost, handleAddReply }) =
             CONTENT: {post.content}
           </h2>
         </div>
+          <h2 className="post-item-post-name | text-sm">
+            REPLIES:
+            <>
+              {post.replies.map(reply => (
+                <ReplyItem reply={reply}/>
+                ))
+              }
+          </> 
+          </h2>
+        <button><ReplyButton post={post} handleAddReply={handleAddReply}/></button>
       </div>
       <Modal
         open={open}
@@ -67,11 +89,7 @@ const PostItem = ({post, handleUpdatePost, handleDeletePost, handleAddReply }) =
               <button onClick={() => handleDeletePost(post._id)}>
                 DELETE
               </button>
-              <AddReply post={post} handleAddReply={handleAddReply}/>
               <div className=" replies-container">
-                <>
-                  {/* {post.replies.map((reply, idx))} */}
-                </>
               </div>
             </Typography>
           </Box>

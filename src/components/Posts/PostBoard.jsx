@@ -30,7 +30,6 @@ const PostBoard = ({ user }) => {
 
   //* State *//
   const [posts, setPosts] = useState([]);
-  const [replies, setReplies] = useState([]);
 
   //* useEffect *//
   useEffect(() => {
@@ -63,13 +62,6 @@ const PostBoard = ({ user }) => {
       (post, idx) => post._id !== deletedPost._id
     );
     setPosts(newPostsArray);
-    handleClose()
-  };
-
-  const handleAddReply = async (newReplyData, id) => {
-    console.log(newReplyData)
-    const newReply = await postService.createReply(newReplyData, id);
-    setReplies([...replies, newReply]);
     handleClose()
   };
 
@@ -124,7 +116,6 @@ const PostBoard = ({ user }) => {
                 post={post}
                 handleUpdatePost={handleUpdatePost}
                 handleDeletePost={handleDeletePost}
-                handleAddReply={handleAddReply}
               />
           )}
         </>
