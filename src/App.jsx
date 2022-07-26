@@ -8,6 +8,8 @@ import Challenges from './pages/Challenges/Challenges'
 import Resources from './pages/Resources/Resources'
 import JobSites from './pages/JobSite/JobSites'
 import AddReply from './components/Posts/AddReply'
+import AddLearnCard from './components/Learning/AddLearnCard'
+
 
 
 const App = () => {
@@ -63,6 +65,9 @@ const App = () => {
           <Route
           path="/replies"
           element={<AddReply />} />
+          <Route
+          path="/add-learn-card"
+          element={<AddLearnCard />} />
       </Routes>
     </>
   )
