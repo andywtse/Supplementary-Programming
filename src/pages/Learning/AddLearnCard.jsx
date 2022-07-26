@@ -30,7 +30,7 @@ function AddLearnCard(props) {
 
 	return (
 		<>
-			<h1>Add Puppy</h1>
+			<h1>Add Front End Learning Module</h1>
 			<form autoComplete="off">
       <Card sx={{ maxWidth: 275, }}>
         <CardContent>

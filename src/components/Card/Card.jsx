@@ -25,7 +25,7 @@ const Cards = ({learn, handleDeleteLearn}) => {
             {learn.url}
           </Typography>
           <CardActions>
-            <Button onClick={handleDeleteLearn}>
+            <Button onClick={() => handleDeleteLearn(learn._id)}>
               Delete
             </Button>
           </CardActions>
