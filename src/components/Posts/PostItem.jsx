@@ -11,9 +11,9 @@ import EditPost from "./EditPost"
 import ReplyButton from "./ReplyButton"
 import ReplyItem from "./ReplyItem"
 
-const PostItem = ({post, handleUpdatePost, handleDeletePost }) => {
+const PostItem = ({ post, handleUpdatePost, handleDeletePost, user }) => {
 
-  const [replies,setReplies] = useState([])
+  const [replies, setReplies] = useState([])
 
   //* Modal State & Style *//
   const [open, setOpen] = useState(false)
@@ -43,30 +43,52 @@ const PostItem = ({post, handleUpdatePost, handleDeletePost }) => {
     setReplies([...replies, newReply]);
     handleClose()
   };
-  
+
   return (
     <>
-      <div className="posts-container" id="scrollbar">
-        <div
-        onClick={handleOpen}
-        >
-          <div className="post-title">
-            {post.title}
+      {user ?
+        <div className="posts-container" id="scrollbar">
+          <div
+            onClick={handleOpen}
+          >
+            <header className="post-title">
+              {post.title}
+            </header>
+            <content className="post-content">
+              {post.content}
+            </content>
           </div>
-          <div className="post-content">
-            {post.content}
-          </div>
-        </div>
-          <div className="post-replies">
+          <content className="post-replies">
             <>
               {post.replies.map(reply => (
-                <ReplyItem reply={reply}/>
-                ))
+                <ReplyItem reply={reply} />
+              ))
               }
-          </> 
+            </>
+          </content>
+          <button className="reply-button"><ReplyButton post={post} handleAddReply={handleAddReply} /></button>
+        </div>
+        :
+        <div className="posts-container" id="scrollbar">
+          <div
+          >
+            <header className="post-title">
+              {post.title}
+            </header>
+            <content className="post-content">
+              {post.content}
+            </content>
           </div>
-        <button className="reply-button"><ReplyButton post={post} handleAddReply={handleAddReply}/></button>
-      </div>
+          <content className="post-replies">
+            <>
+              {post.replies.map(reply => (
+                <ReplyItem reply={reply} />
+              ))
+              }
+            </>
+          </content>
+        </div>
+      }
       <Modal
         open={open}
         onClose={handleClose}
@@ -81,7 +103,7 @@ const PostItem = ({post, handleUpdatePost, handleDeletePost }) => {
         <Fade in={open}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              <span>               
+              <span>
                 {post.title}
               </span>
             </Typography>

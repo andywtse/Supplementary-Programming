@@ -71,11 +71,16 @@ const PostBoard = ({ user }) => {
         <h1>
           Posts
         </h1>
-        <button
-          onClick={handleOpen}
-        >
-          <AddCircleOutlineIcon/>
-        </button>
+        {user ?
+          <button
+            onClick={handleOpen}
+          >
+            <AddCircleOutlineIcon />
+          </button>
+          :
+          ""
+        }
+
         <Modal
           open={open}
           onClose={handleClose}
@@ -94,7 +99,7 @@ const PostBoard = ({ user }) => {
                 variant="h6"
                 component="h2"
               >
-                
+
               </Typography>
               <Typography
                 id="transition-modal-description"
@@ -110,12 +115,13 @@ const PostBoard = ({ user }) => {
       <div>
         <>
           {posts.map((post, idx) =>
-              <PostItem
-                key={idx}
-                post={post}
-                handleUpdatePost={handleUpdatePost}
-                handleDeletePost={handleDeletePost}
-              />
+            <PostItem
+              key={idx}
+              post={post}
+              user={user}
+              handleUpdatePost={handleUpdatePost}
+              handleDeletePost={handleDeletePost}
+            />
           )}
         </>
       </div>

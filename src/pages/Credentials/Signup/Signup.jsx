@@ -167,7 +167,7 @@ const Signup = (props) => {
                       Admin Code
                     </label>
                     <input
-                      type="text"
+                      type="password"
                       placeholder="Admin Code"
                       name="code"
                       value={formData.code}
