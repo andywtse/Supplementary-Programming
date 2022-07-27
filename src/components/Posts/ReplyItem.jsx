@@ -1,7 +1,7 @@
 const ReplyItem = ({ reply }) => {
   return (
     <>
-    <h1>{reply.content}</h1>
+    <h1 class="reply-item">{reply.content}</h1>
     </>
   );
 };

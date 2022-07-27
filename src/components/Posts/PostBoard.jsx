@@ -71,11 +71,11 @@ const PostBoard = ({ user }) => {
         <h1>
           Posts
         </h1>
-          <button
-            onClick={handleOpen}
-          >
-            <AddCircleOutlineIcon/>
-          </button>
+        <button
+          onClick={handleOpen}
+        >
+          <AddCircleOutlineIcon/>
+        </button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -107,7 +107,7 @@ const PostBoard = ({ user }) => {
           </Fade>
         </Modal>
       </header>
-      <div className="posts-container">
+      <div>
         <>
           {posts.map((post, idx) =>
               <PostItem

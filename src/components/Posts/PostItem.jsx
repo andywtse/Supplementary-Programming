@@ -10,7 +10,6 @@ import { Modal, Box, Typography, Backdrop, Fade } from '@mui/material'
 import EditPost from "./EditPost"
 import ReplyButton from "./ReplyButton"
 import ReplyItem from "./ReplyItem"
-import { Title } from "@mui/icons-material";
 
 const PostItem = ({post, handleUpdatePost, handleDeletePost }) => {
 
@@ -31,13 +30,13 @@ const PostItem = ({post, handleUpdatePost, handleDeletePost }) => {
   }
 
   //* useEffect *//
-  // useEffect(() => {
-  //   const fetchAllPosts = async () => {
-  //     const postData = await postService.getAll();
-  //     setReplies(postData);
-  //   };
-  //   fetchAllPosts();
-  // }, [replies]);
+  useEffect(() => {
+    const fetchAllPosts = async () => {
+      const postData = await postService.getAll();
+      setReplies(postData);
+    };
+    fetchAllPosts();
+  }, []);
 
   const handleAddReply = async (newReplyData, id) => {
     const newReply = await postService.createReply(newReplyData, id);
@@ -47,25 +46,25 @@ const PostItem = ({post, handleUpdatePost, handleDeletePost }) => {
   
   return (
     <>
-      <div className="post-item">
+      <div className="posts-container" id="scrollbar">
         <div
         onClick={handleOpen}
         >
-          <header className="post-title">
+          <div className="post-title">
             {post.title}
-          </header>
-          <content className="post-content">
+          </div>
+          <div className="post-content">
             {post.content}
-          </content>
+          </div>
         </div>
-          <content className="post-replies">
+          <div className="post-replies">
             <>
               {post.replies.map(reply => (
                 <ReplyItem reply={reply}/>
                 ))
               }
           </> 
-          </content>
+          </div>
         <button className="reply-button"><ReplyButton post={post} handleAddReply={handleAddReply}/></button>
       </div>
       <Modal
