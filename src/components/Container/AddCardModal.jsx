@@ -19,7 +19,7 @@ const AddSectionModal = ({ handleAddCard }) => {
     header: '',
     title: '',
     description: '',
-    url: '',
+    url: 'https://',
   })
 
   // MUI
@@ -30,7 +30,7 @@ const AddSectionModal = ({ handleAddCard }) => {
       header: '',
       title: '',
       description: '',
-      url: '',
+      url: 'https://',
     })
     setOpen(false);
   }

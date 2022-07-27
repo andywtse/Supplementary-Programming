@@ -38,7 +38,7 @@ const EditPageModal = ({ card, handleUpdateCard }) => {
         sx={{ p: 0 }}
         onClick={handleOpen}
       >
-        Edit Section Details
+        Edit
       </Button>
       <Modal
         open={open}

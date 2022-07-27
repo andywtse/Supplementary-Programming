@@ -1,80 +1,40 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
-import { Modal, Box, Typography, Backdrop, Fade } from '@mui/material'
+import * as React from 'react';
+import { Typography} from '@mui/material'
 
-import { useState } from "react"
+import EditCardModal from './EditCardModal'
 
+const CardItem = ({ card, handleDeleteCard, handleUpdateCard }) => {
 
-const CardItem = ({card, handleDeleteCard, handleUpdateCard}) => {
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 600,
-    p: 4,
-    color: 'white',
-  }
-
-  return(
-    <>  
-      <Card sx={{ maxWidth: 275 }}>
+  return (
+    <>
+      <div className="card-item-container">
         <CardContent>
-          <Typography variant="h5" component="div">
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             {card.header}
           </Typography>
-          <Typography sx={{ mt: 1.5 }}>
+          <Typography variant="h5" component="div">
             {card.title}
           </Typography>
-          <Typography sx={{ mt: 1.5, fontSize: 12}}>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
             {card.description}
           </Typography>
-          <Typography sx={{ mt: 1.5, fontSize: 12 }} variant="body2" color="text.secondary">
-            {card.url}
+          <Typography variant="body2">
+            {card.description}
           </Typography>
-          <CardActions>
-            <Button onClick={() => handleDeleteCard(card._id)}>
-              Delete
-            </Button>
-            <Button onClick={handleOpen}>
-                Edit
-            </Button>
-          </CardActions>
         </CardContent>
-      </Card>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 1000,
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <Typography
-              id="transition-modal-description"
-              sx={{ mt: 2 }}
-              component={"span"}
-            >
-              <EditCardModal
+        <CardActions>
+          <Button size="small">
+            <EditCardModal
               card={card}
-              handleUpdateLearn={handleUpdateCard}
-              handleClose={handleClose}
-              />
-            </Typography>
-          </Box>
-        </Fade>
-      </Modal>
+              handleUpdateCard={handleUpdateCard}
+            />
+          </Button>
+          <Button size="small" onClick={() => handleDeleteCard(card._id)}>Delete</Button>
+        </CardActions>
+      </div>
     </>
   )
 }

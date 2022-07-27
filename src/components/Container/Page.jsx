@@ -49,7 +49,7 @@ const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
   }
 
   return (
-    <main>
+    <main id="scrollbar">
 
 
       <div>

@@ -29,6 +29,7 @@ const Pages = ({ section, handleDeleteSection, handleUpdateSection }) => {
 
   const handleAddCard = async (formData) => {
     const newCard = await pageService.createCard(formData, section._id)
+    console.log(newCard)
     setCards([...cards, newCard])
   }
 
@@ -40,7 +41,7 @@ const Pages = ({ section, handleDeleteSection, handleUpdateSection }) => {
     setCards([...newCardDataArray]);
   };
 
-  const handleDeleteCard= async (cardId) => {
+  const handleDeleteCard = async (cardId) => {
     const deletedCard = await pageService.deleteCard(cardId);
     const newCardsArray = cards.filter(
       (card) => card._id !== deletedCard._id
@@ -61,21 +62,23 @@ const Pages = ({ section, handleDeleteSection, handleUpdateSection }) => {
             </Button>
           </div>
         </div>
+        <div className="card-container">
+          {cards ?
+            <>
+              {cards.map((card, idx) => (
+                <CardItem
+                  key={idx}
+                  card={card}
+                  handleDeleteCard={handleDeleteCard}
+                  handleUpdateCard={handleUpdateCard}
+                />
+              ))}
+            </>
+            :
+            ""
+          }
+        </div>
 
-        {cards ?
-          <>
-            {cards.map((card, idx) => (
-              <CardItem
-                key={idx}
-                card={card}
-                handleDeleteCard={handleDeleteCard}
-                handleUpdateCard={handleUpdateCard}
-              />
-            ))}
-          </>
-          :
-          ""
-        }
 
         {/* Menu options */}
         <Menu
@@ -95,21 +98,21 @@ const Pages = ({ section, handleDeleteSection, handleUpdateSection }) => {
           onClose={handleCloseUserMenu}
         >
           {/* Adds Card */}
-          <MenuItem key='add-section-modal' onClick={handleCloseUserMenu}>
+          <MenuItem key='add-card-modal' onClick={handleCloseUserMenu}>
             <Typography textAlign="center" component={'span'}>
               <AddCardModal handleAddCard={handleAddCard} />
             </Typography>
           </MenuItem>
 
           {/* Edits Section */}
-          <MenuItem key='edit-page-modal' onClick={handleCloseUserMenu}>
+          <MenuItem key='edit-section-modal' onClick={handleCloseUserMenu}>
             <Typography textAlign="center" component={'span'}>
-              <EditSectionModal section={section} handleUpdateSection={handleUpdateSection}/>
+              <EditSectionModal section={section} handleUpdateSection={handleUpdateSection} />
             </Typography>
           </MenuItem>
 
           {/* Delete Section */}
-          <MenuItem key='delete-page' onClick={handleCloseUserMenu}>
+          <MenuItem key='delete-section' onClick={handleCloseUserMenu}>
             <Typography textAlign="center" component={'span'}>
               <Button
                 sx={{ p: 0, color: 'red' }}
