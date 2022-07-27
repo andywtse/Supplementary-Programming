@@ -91,7 +91,7 @@ const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages, handleAddPage,
                 :
                 ""
               }
-              {user ?
+              {user && user.admin ?
                 <MenuItem key='add'>
                   <Typography textAlign="center" component={'span'}>
                     <AddPageModal handleAddPage={handleAddPage} />
@@ -135,7 +135,7 @@ const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages, handleAddPage,
               :
               ""
             }
-            {user ?
+            {user && user.admin  ?
                 <MenuItem key='add'>
                   <Typography textAlign="center" component={'span'}>
                     <AddPageModal handleAddPage={handleAddPage} />

@@ -55,7 +55,7 @@ const Pages = ({ page, handleDeletePage, handleUpdatePage, user }) => {
           <div className="page-header-container">
             <h1 className="page-header-title">{page.title}</h1>
             <div className="page-option-menu">
-              {user ? <Button
+              {user && user.admin  ? <Button
                 sx={{ my: 2, color: 'black' }}
                 onClick={handleOpenUserMenu}>
                 <span className="text-lg">Options</span>
