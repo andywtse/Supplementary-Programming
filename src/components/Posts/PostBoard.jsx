@@ -7,11 +7,11 @@ import { useState, useEffect } from "react";
 
 //* Package Imports *//
 import { Modal, Box, Typography, Backdrop, Fade } from "@mui/material";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 //* Components *//
 import PostItem from "./PostItem";
 import AddPost from "./AddPost";
-import AddReply from "./AddReply";
 
 const PostBoard = ({ user }) => {
   //* Modal State and Style *//
@@ -66,16 +66,15 @@ const PostBoard = ({ user }) => {
   };
 
   return (
-    <div className="PostBoard | ">
-      <header className="PostBoard-header | ">
+    <div>
+      <header>
         <h1>
           Posts
         </h1>
           <button
             onClick={handleOpen}
-            className="PostBoard-add-event-button | "
           >
-            Add Post
+            <AddCircleOutlineIcon/>
           </button>
         <Modal
           open={open}
@@ -95,7 +94,7 @@ const PostBoard = ({ user }) => {
                 variant="h6"
                 component="h2"
               >
-                <span className="form-header"/>
+                
               </Typography>
               <Typography
                 id="transition-modal-description"
@@ -108,7 +107,7 @@ const PostBoard = ({ user }) => {
           </Fade>
         </Modal>
       </header>
-      <div className=" schedule-items-container">
+      <div className="posts-container">
         <>
           {posts.map((post, idx) =>
               <PostItem

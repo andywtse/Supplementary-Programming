@@ -28,12 +28,9 @@ const AddPost = ({ handleAddPost }) => {
   
   return (
     <>
-      <form ref={formElement} className="" onSubmit={handleSubmit}>
-        <div className="">
-          <div className="">
-            {/* <label htmlFor="title-input">
-              Title
-            </label> */}
+      <form ref={formElement} onSubmit={handleSubmit}>
+        <div>
+          <div>
             <input 
               type="text"
               autoComplete='off'
@@ -44,10 +41,7 @@ const AddPost = ({ handleAddPost }) => {
               onChange={handleChange} 
             />
           </div>
-          <div className="">
-            {/* <label htmlFor="content-input">
-              Content
-            </label> */}
+          <div>
             <textarea 
               autoComplete='off'
               placeholder="Content" 

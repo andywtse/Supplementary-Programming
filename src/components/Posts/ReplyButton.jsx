@@ -3,6 +3,7 @@ import { useState } from "react"
 
 //* Package Imports *//
 import { Modal, Box, Typography, Backdrop, Fade, } from '@mui/material'
+import AddCommentIcon from '@mui/icons-material/AddComment';
 
 import AddReply from "./AddReply"
 
@@ -23,7 +24,7 @@ const ReplyButton = ({post, handleAddReply}) => {
 
 return (
   <>
-  <button onClick={handleOpen}>Reply</button>
+  <AddCommentIcon sx={{ color: "white" }} onClick={handleOpen}></AddCommentIcon>
   <Modal
         open={open}
         onClose={handleClose}
@@ -43,7 +44,7 @@ return (
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               <>
-              <AddReply post={post} handleAddReply={handleAddReply}/>
+              <AddReply post={post} handleAddReply={handleAddReply} handleClose={handleClose}/>
               </>
             </Typography>
           </Box>
