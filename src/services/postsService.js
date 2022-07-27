@@ -47,6 +47,17 @@ async function getAll() {
   return await res.json()
 }
 
+async function getReplies(postId) {
+  const res = await fetch(`${SERVER_URL}/${postId}/replies`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+  })
+  return await res.json()
+}
+
 async function createReply(newReplyData, id) {
   const res = await fetch(`${SERVER_URL}/${id}/replies`, {
     method: 'POST',
@@ -63,6 +74,7 @@ export {
 	create,
   update,
   getAll,
+  getReplies,
   deletePost,
   createReply
 }

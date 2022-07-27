@@ -5,7 +5,7 @@ import AddCardModal from "./AddCardModal"
 import EditSectionModal from "./EditSectionModal"
 import CardItem from "./CardItem"
 
-const Pages = ({ section, handleDeleteSection, handleUpdateSection, user }) => {
+const Section = ({ section, handleDeleteSection, handleUpdateSection, user }) => {
 
   const [cards, setCards] = useState()
 
@@ -134,4 +134,4 @@ const Pages = ({ section, handleDeleteSection, handleUpdateSection, user }) => {
   )
 }
 
-export default Pages
+export default Section

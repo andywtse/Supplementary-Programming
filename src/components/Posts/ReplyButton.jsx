@@ -24,7 +24,7 @@ const ReplyButton = ({post, handleAddReply}) => {
 
 return (
   <>
-  <AddCommentIcon sx={{ color: "white" }} onClick={handleOpen}></AddCommentIcon>
+  <AddCommentIcon sx={{ color: "blue" }} onClick={handleOpen}></AddCommentIcon>
   <Modal
         open={open}
         onClose={handleClose}
@@ -40,6 +40,7 @@ return (
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
               <span className='form-header'>
+                Add a Reply
               </span>
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>

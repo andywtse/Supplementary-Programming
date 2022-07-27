@@ -32,11 +32,11 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost, user }) => {
   //* useEffect *//
   useEffect(() => {
     const fetchAllPosts = async () => {
-      const postData = await postService.getAll();
-      setReplies(postData);
+      const replyData = await postService.getReplies(post._id);
+      setReplies(replyData);
     };
     fetchAllPosts();
-  }, []);
+  }, [post]);
 
   const handleAddReply = async (newReplyData, id) => {
     const newReply = await postService.createReply(newReplyData, id);
@@ -49,24 +49,24 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost, user }) => {
       {user ?
         <div className="posts-container" id="scrollbar">
           <div
-            onClick={handleOpen}
           >
-            <header className="post-title">
+            <header className="post-title" onClick={handleOpen}>
               {post.title}
             </header>
             <content className="post-content">
               {post.content}
+              <button className="reply-button"><ReplyButton post={post} handleAddReply={handleAddReply} /></button>
             </content>
           </div>
           <content className="post-replies">
             <>
-              {post.replies.map(reply => (
+              {replies.map(reply => (
                 <ReplyItem reply={reply} />
               ))
               }
             </>
           </content>
-          <button className="reply-button"><ReplyButton post={post} handleAddReply={handleAddReply} /></button>
+          
         </div>
         :
         <div className="posts-container" id="scrollbar">
@@ -81,7 +81,7 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost, user }) => {
           </div>
           <content className="post-replies">
             <>
-              {post.replies.map(reply => (
+              {replies.map(reply => (
                 <ReplyItem reply={reply} />
               ))
               }
@@ -104,7 +104,7 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost, user }) => {
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
               <span>
-                {post.title}
+                Edit Post
               </span>
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>

@@ -26,9 +26,9 @@ const EditPost = ({ post, handleUpdatePost }) => {
 
   return (
     <>
-      <form ref={formElement} onSubmit={handleSubmit}>
-        <div>
-          <div>
+      <form className="flex flex-col gap-6 pt-4" ref={formElement} onSubmit={handleSubmit}>
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
             <label>
               Title <span>*</span>
             </label>
@@ -40,7 +40,7 @@ const EditPost = ({ post, handleUpdatePost }) => {
               onChange={handleChange} 
             />
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label>
               Content <span>*</span>
             </label>

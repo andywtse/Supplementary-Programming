@@ -75,7 +75,7 @@ const PostBoard = ({ user }) => {
           <button
             onClick={handleOpen}
           >
-            <AddCircleOutlineIcon />
+            <AddCircleOutlineIcon sx={{ color: "blue" }}/>
           </button>
           :
           ""
@@ -99,7 +99,7 @@ const PostBoard = ({ user }) => {
                 variant="h6"
                 component="h2"
               >
-
+                Create a New Post
               </Typography>
               <Typography
                 id="transition-modal-description"
