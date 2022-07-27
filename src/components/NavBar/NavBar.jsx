@@ -91,11 +91,16 @@ const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages, handleAddPage,
                 :
                 ""
               }
-              <MenuItem key='add'>
-                <Typography textAlign="center" component={'span'}>
-                  <AddPageModal handleAddPage={handleAddPage} />
-                </Typography>
-              </MenuItem>
+              {user ?
+                <MenuItem key='add'>
+                  <Typography textAlign="center" component={'span'}>
+                    <AddPageModal handleAddPage={handleAddPage} />
+                  </Typography>
+                </MenuItem>
+                :
+                ""
+              }
+
             </Menu>
           </Box>
           <Typography
@@ -130,11 +135,15 @@ const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages, handleAddPage,
               :
               ""
             }
-            <MenuItem key='add'>
-              <Typography textAlign="center" component={'span'}>
-                <AddPageModal handleAddPage={handleAddPage} />
-              </Typography>
-            </MenuItem>
+            {user ?
+                <MenuItem key='add'>
+                  <Typography textAlign="center" component={'span'}>
+                    <AddPageModal handleAddPage={handleAddPage} />
+                  </Typography>
+                </MenuItem>
+                :
+                ""
+              }
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
