@@ -5,10 +5,6 @@ import * as authService from './services/authService'
 import * as pageService from './services/pageService'
 import NavBar from './components/NavBar/NavBar'
 import Landing from './pages/Landing/Landing'
-import Learning from './pages/Learning/Learning'
-import Challenges from './pages/Challenges/Challenges'
-import Resources from './pages/Resources/Resources'
-import JobSites from './pages/JobSite/JobSites'
 import Page from './components/Container/Page'
 
 const App = () => {
@@ -69,18 +65,6 @@ const App = () => {
         <Route
           path="/"
           element={<Landing user={user} />} />
-        <Route
-          path="/learning"
-          element={<Learning />} />
-        <Route
-          path="/challenges"
-          element={<Challenges />} />
-        <Route
-          path="/resources"
-          element={<Resources />} />
-        <Route
-          path="/jobsites"
-          element={<JobSites />} />
         {pages ?
           pages.map( (page,idx) => (
             <Route

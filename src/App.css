@@ -1,3 +1,10 @@
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 main {
   background-color: rgba(245, 245, 220, 0.3);
   border-radius: 10px;
@@ -73,7 +80,7 @@ section {
   padding: 1em;
   margin: 1em;
   max-width: 450px;
-  word-break: break-all;
+  word-break:normal;
 }
 
 .card-item {

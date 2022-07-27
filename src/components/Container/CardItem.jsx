@@ -21,9 +21,14 @@ const CardItem = ({ card, handleDeleteCard, handleUpdateCard, user }) => {
           <Typography className="card-item" sx={{ mb: 1.5 }} color="text.secondary">
             {card.description}
           </Typography>
-          <Typography className="card-link" variant="body2">
-            <a href={card.url}>{card.url}</a>
-          </Typography>
+          {card.url ?
+            <Typography className="card-link" variant="body2">
+              <a href={card.url} target="_blank" rel="noopener noreferrer">{card.url}</a>
+            </Typography>
+            :
+            ""
+          }
+
         </CardContent>
         {user ? <CardActions>
           <Button size="small">

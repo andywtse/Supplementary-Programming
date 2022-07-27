@@ -78,26 +78,6 @@ const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages, handleAddPage,
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <MenuItem key='learning' onClick={handleCloseNavMenu}>
-                <Typography textAlign="center" component={'span'}>
-                  <Link className="nav-button rounded" to="/learning">Learning</Link>
-                </Typography>
-              </MenuItem>
-              <MenuItem key='challenges' onClick={handleCloseNavMenu} component={'span'}>
-                <Typography textAlign="center">
-                  <Link className="nav-button rounded" to="/challenges">Challenges</Link>
-                </Typography>
-              </MenuItem>
-              <MenuItem key='resources' onClick={handleCloseNavMenu} component={'span'}>
-                <Typography textAlign="center">
-                  <Link className="nav-button rounded" to="/resources">Resources</Link>
-                </Typography>
-              </MenuItem>
-              <MenuItem key='jobsites' onClick={handleCloseNavMenu} component={'span'}>
-                <Typography textAlign="center">
-                  <Link className="nav-button rounded" to="/jobsites">Job Sites</Link>
-                </Typography>
-              </MenuItem>
               {pages ?
                 <>
                   {pages.map((page, idx) => (
@@ -137,26 +117,6 @@ const NavBar = ({ user, handleLogout, handleSignupOrLogin, pages, handleAddPage,
             SP
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <MenuItem key='learning' onClick={handleCloseNavMenu}>
-              <Typography textAlign="center" component={'span'}>
-                <Link className="nav-button rounded" to="/learning">Learning</Link>
-              </Typography>
-            </MenuItem>
-            <MenuItem key='challenges' onClick={handleCloseNavMenu}>
-              <Typography textAlign="center" component={'span'}>
-                <Link className="nav-button rounded" to="/challenges">Challenges</Link>
-              </Typography>
-            </MenuItem>
-            <MenuItem key='resources' onClick={handleCloseNavMenu}>
-              <Typography textAlign="center" component={'span'}>
-                <Link className="nav-button rounded" to="/resources">Resources</Link>
-              </Typography>
-            </MenuItem>
-            <MenuItem key='jobsites' onClick={handleCloseNavMenu}>
-              <Typography textAlign="center" component={'span'}>
-                <Link className="nav-button rounded" to="/jobsites">Job Sites</Link>
-              </Typography>
-            </MenuItem>
             {pages ?
               <>
                 {pages.map((page, idx) => (
