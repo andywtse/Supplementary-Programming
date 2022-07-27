@@ -5,7 +5,7 @@ import AddCardModal from "./AddCardModal"
 import EditSectionModal from "./EditSectionModal"
 import CardItem from "./CardItem"
 
-const Pages = ({ section, handleDeleteSection, handleUpdateSection }) => {
+const Pages = ({ section, handleDeleteSection, handleUpdateSection, user }) => {
 
   const [cards, setCards] = useState()
 
@@ -25,7 +25,7 @@ const Pages = ({ section, handleDeleteSection, handleUpdateSection }) => {
       setCards(cardData)
     }
     fetchAllCards()
-  }, [])
+  }, [section])
 
   const handleAddCard = async (formData) => {
     const newCard = await pageService.createCard(formData, section._id)
@@ -55,11 +55,16 @@ const Pages = ({ section, handleDeleteSection, handleUpdateSection }) => {
         <div className="section-header-container">
           <h1 className="section-header-title">{section.title}</h1>
           <div className="section-option-menu">
-            <Button
-              sx={{ my: 2, color: 'black' }}
-              onClick={handleOpenUserMenu}>
-              <span className="text-lg">Options</span>
-            </Button>
+            {user ?
+              <Button
+                sx={{ my: 2, color: 'black' }}
+                onClick={handleOpenUserMenu}>
+                <span className="text-lg">Options</span>
+              </Button>
+              :
+              ""
+            }
+
           </div>
         </div>
         <div className="card-container">
@@ -69,6 +74,7 @@ const Pages = ({ section, handleDeleteSection, handleUpdateSection }) => {
                 <CardItem
                   key={idx}
                   card={card}
+                  user={user}
                   handleDeleteCard={handleDeleteCard}
                   handleUpdateCard={handleUpdateCard}
                 />

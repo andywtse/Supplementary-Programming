@@ -89,6 +89,7 @@ const App = () => {
               element={
                 <Page
                   page={page}
+                  user={user}
                   handleDeletePage={handleDeletePage}
                   handleUpdatePage={handleUpdatePage}
                 />}

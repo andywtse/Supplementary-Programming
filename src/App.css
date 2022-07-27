@@ -28,7 +28,8 @@ main {
 }
 
 section {
-  background-color: rgba(12, 189, 255, 0.4);
+
+  background-color: rgba(12, 189, 255, 0.1);
   border-radius: 10px;
   border: 1px solid rgba(212, 175, 55, .8);
   padding: 2em;
@@ -58,6 +59,7 @@ section {
   display: flex;
   flex-direction: row;
   justify-content: start;
+  flex-wrap: wrap;
 }
 
 .card-item-container {
@@ -65,12 +67,30 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: beige;
+  background-color: rgba(251, 241, 222, .3);
+  border-radius: 30px;
   border: 1px solid rgba(212, 175, 55, .8);
   padding: 1em;
   margin: 1em;
   max-width: 450px;
   word-break: break-all;
+}
+
+.card-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  border: 1px solid rgba(212, 175, 55, .8);
+  padding: 0.5em;
 }
 
 #scrollbar::-webkit-scrollbar-track {

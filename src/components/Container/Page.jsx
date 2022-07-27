@@ -5,7 +5,7 @@ import AddSectionModal from "./AddSectionModal"
 import EditPageModal from "./EditPageModal"
 import Section from "./Section"
 
-const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
+const Pages = ({ page, handleDeletePage, handleUpdatePage, user }) => {
 
   const [sections, setSections] = useState()
 
@@ -25,10 +25,10 @@ const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
       setSections(sectionData)
     }
     fetchAllSections()
-  },[])
+  }, [page])
 
   const handleAddSection = async (formData) => {
-    const newSection = await pageService.createSection(formData,page._id)
+    const newSection = await pageService.createSection(formData, page._id)
     setSections([...sections, newSection])
   }
 
@@ -50,27 +50,28 @@ const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
 
   return (
     <main id="scrollbar">
-
-
       <div>
         <Box sx={{ flexGrow: 0 }}>
           <div className="page-header-container">
             <h1 className="page-header-title">{page.title}</h1>
             <div className="page-option-menu">
-              <Button
+              {user ? <Button
                 sx={{ my: 2, color: 'black' }}
                 onClick={handleOpenUserMenu}>
                 <span className="text-lg">Options</span>
               </Button>
+                : ""}
+
             </div>
           </div>
 
-          { sections ? 
+          {sections ?
             <>
-              {sections.map( (section,idx) => (
-                <Section 
+              {sections.map((section, idx) => (
+                <Section
                   key={idx}
                   section={section}
+                  user={user}
                   handleDeleteSection={handleDeleteSection}
                   handleUpdateSection={handleUpdateSection}
                 />
@@ -79,7 +80,6 @@ const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
             :
             ""
           }
-
           {/* Menu options */}
           <Menu
             sx={{ mt: '45px' }}
@@ -100,14 +100,14 @@ const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
             {/* Adds Section */}
             <MenuItem key='add-section-modal' onClick={handleCloseUserMenu}>
               <Typography textAlign="center" component={'span'}>
-                <AddSectionModal handleAddSection={handleAddSection}/>
+                <AddSectionModal handleAddSection={handleAddSection} />
               </Typography>
             </MenuItem>
 
             {/* Edits Page */}
             <MenuItem key='edit-page-modal' onClick={handleCloseUserMenu}>
               <Typography textAlign="center" component={'span'}>
-                <EditPageModal page={page} handleUpdatePage={handleUpdatePage}/>
+                <EditPageModal page={page} handleUpdatePage={handleUpdatePage} />
               </Typography>
             </MenuItem>
 
@@ -116,7 +116,7 @@ const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
               <Typography textAlign="center" component={'span'}>
                 <Button
                   sx={{ p: 0, color: 'red' }}
-                  onClick={()=>handleDeletePage(page._id)}
+                  onClick={() => handleDeletePage(page._id)}
                 >
                   Delete Current Page
                 </Button>
