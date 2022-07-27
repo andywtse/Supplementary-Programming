@@ -13,7 +13,6 @@ main {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .page-header-title {
@@ -22,6 +21,33 @@ main {
 }
 
 .page-option-menu {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  background-color: rgba(12,189,255,0.4);
+  border-radius: 10px;
+  border: 1px solid rgba( 212, 175, 55, .8 );
+  padding: 2em;
+  margin: 2em 0;
+}
+
+.section-header-container {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-header-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.section-option-menu {
   display:flex;
   flex-direction: row;
   align-items: center;

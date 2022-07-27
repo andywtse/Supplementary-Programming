@@ -3,7 +3,7 @@ import { useState } from 'react'
 //* Package Imports *//
 import { Modal, Box, Typography, Button } from "@mui/material";
 
-const AddSectionModal = ({handleAddSection}) => {
+const EditPageModal = ({ section, handleUpdateSection }) => {
 
   const style = {
     position: "absolute",
@@ -15,35 +15,20 @@ const AddSectionModal = ({handleAddSection}) => {
     color: "white",
   };
 
-  const [message, setMessage] = useState([''])
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-  })
+  const [formData, setFormData] = useState(section)
 
   // MUI
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setFormData({
-      title: '',
-      description: '',
-    })
-    setOpen(false);
-  }
-
-  const updateMessage = msg => {
-    setMessage(msg)
-  }
+  const handleClose = () => setOpen(false);
 
   const handleChange = e => {
-    updateMessage('')
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async evt => {
     evt.preventDefault()
-    handleAddSection(formData)
+    handleUpdateSection(formData)
     handleClose()
   }
 
@@ -53,7 +38,7 @@ const AddSectionModal = ({handleAddSection}) => {
         sx={{ p: 0 }}
         onClick={handleOpen}
       >
-        Add New Section
+        Edit Section Details
       </Button>
       <Modal
         open={open}
@@ -63,10 +48,7 @@ const AddSectionModal = ({handleAddSection}) => {
       >
         <Box sx={style}>
           <Typography id='modal-modal-title' variant='h6' component='h2'>
-            Add New Section
-          </Typography>
-          <Typography>
-            {message}
+            Edit Section Details
           </Typography>
           <Typography id='modal-modal-description' component={'span'} sx={{ mt: 2 }}>
             <form className="flex flex-col gap-6 pt-4" onSubmit={handleSubmit}>
@@ -109,4 +91,4 @@ const AddSectionModal = ({handleAddSection}) => {
 
 }
 
-export default AddSectionModal
+export default EditPageModal
