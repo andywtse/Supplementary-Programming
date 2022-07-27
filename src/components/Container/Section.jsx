@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import * as pageService from '../../services/pageService'
 import AddCardModal from "./AddCardModal"
 import EditSectionModal from "./EditSectionModal"
-import Card from "./Card"
+import CardItem from "./CardItem"
 
 const Pages = ({ section, handleDeleteSection, handleUpdateSection }) => {
 
@@ -65,7 +65,7 @@ const Pages = ({ section, handleDeleteSection, handleUpdateSection }) => {
         {cards ?
           <>
             {cards.map((card, idx) => (
-              <Card
+              <CardItem
                 key={idx}
                 card={card}
                 handleDeleteCard={handleDeleteCard}
