@@ -1,23 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css'
 import * as authService from './services/authService'
+import * as pageService from './services/pageService'
 import NavBar from './components/NavBar/NavBar'
 import Landing from './pages/Landing/Landing'
 import Learning from './pages/Learning/Learning'
 import Challenges from './pages/Challenges/Challenges'
 import Resources from './pages/Resources/Resources'
 import JobSites from './pages/JobSite/JobSites'
-import AddReply from './components/Posts/AddReply'
-import AddLearnCard from './components/Learning/AddLearnCard'
-
-
+import Page from './components/Container/Page'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
-  const [open, setOpen] = useState(true);
+  const [pages, setPages] = useState()
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchAllPages = async () => {
+      const pageData = await pageService.getAll();
+      setPages(pageData);
+    };
+    fetchAllPages();
+  }, [])
 
   const handleLogout = () => {
     authService.logout();
@@ -29,12 +35,25 @@ const App = () => {
     setUser(authService.getUser());
   };
 
-  function handleSideBarClose() {
-    setOpen(false);
+  const handleAddPage = async (formData) => {
+    const newPage = await pageService.createPage(formData)
+    setPages([...pages, newPage])
   }
 
-  function handleSideBarOpen() {
-    setOpen(true);
+  const handleUpdatePage = async (updatedPageData) => {
+    const newPage = await pageService.updatePage(updatedPageData);
+    const newPageDataArray = pages.map((page) =>
+      page._id === newPage._id ? newPage : page
+    );
+    setPages([...newPageDataArray]);
+  };
+
+  const handleDeletePage = async (pageId) => {
+    const deletedPage = await pageService.deletePage(pageId);
+    const newPagesArray = pages.filter(
+      (page) => page._id !== deletedPage._id
+    );
+    setPages(newPagesArray);
   }
 
   return (
@@ -43,9 +62,8 @@ const App = () => {
         user={user}
         handleSignupOrLogin={handleSignupOrLogin}
         handleLogout={handleLogout}
-        handleSideBarOpen={handleSideBarOpen}
-        handleSideBarClose={handleSideBarClose}
-        open={open}
+        handleAddPage={handleAddPage}
+        pages={pages}
       />
       <Routes>
         <Route
@@ -54,21 +72,31 @@ const App = () => {
         <Route
           path="/learning"
           element={<Learning />} />
-          <Route
+        <Route
           path="/challenges"
           element={<Challenges />} />
-          <Route
+        <Route
           path="/resources"
           element={<Resources />} />
-          <Route
+        <Route
           path="/jobsites"
           element={<JobSites />} />
-          <Route
-          path="/replies"
-          element={<AddReply />} />
-          <Route
-          path="/add-learn-card"
-          element={<AddLearnCard />} />
+        {pages ?
+          pages.map(page => (
+            <Route
+              path={`/${page.title}`}
+              key={page.title}
+              element={
+                <Page
+                  page={page}
+                  handleDeletePage={handleDeletePage}
+                  handleUpdatePage={handleUpdatePage}
+                />}
+            />
+          ))
+          :
+          ""
+        }
       </Routes>
     </>
   )
