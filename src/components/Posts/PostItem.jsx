@@ -10,7 +10,6 @@ import { Modal, Box, Typography, Backdrop, Fade } from '@mui/material'
 import EditPost from "./EditPost"
 import ReplyButton from "./ReplyButton"
 import ReplyItem from "./ReplyItem"
-import { Title } from "@mui/icons-material";
 
 const PostItem = ({ post, handleUpdatePost, handleDeletePost, user }) => {
 
@@ -31,13 +30,13 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost, user }) => {
   }
 
   //* useEffect *//
-  // useEffect(() => {
-  //   const fetchAllPosts = async () => {
-  //     const postData = await postService.getAll();
-  //     setReplies(postData);
-  //   };
-  //   fetchAllPosts();
-  // }, [replies]);
+  useEffect(() => {
+    const fetchAllPosts = async () => {
+      const postData = await postService.getAll();
+      setReplies(postData);
+    };
+    fetchAllPosts();
+  }, []);
 
   const handleAddReply = async (newReplyData, id) => {
     const newReply = await postService.createReply(newReplyData, id);
@@ -48,7 +47,7 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost, user }) => {
   return (
     <>
       {user ?
-        <div className="post-item">
+        <div className="posts-container" id="scrollbar">
           <div
             onClick={handleOpen}
           >
@@ -70,7 +69,7 @@ const PostItem = ({ post, handleUpdatePost, handleDeletePost, user }) => {
           <button className="reply-button"><ReplyButton post={post} handleAddReply={handleAddReply} /></button>
         </div>
         :
-        <div className="post-item">
+        <div className="posts-container" id="scrollbar">
           <div
           >
             <header className="post-title">

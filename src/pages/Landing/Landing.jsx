@@ -2,7 +2,7 @@ import PostBoard from "../../components/Posts/PostBoard"
 
 const Landing = ({ user }) => {
   return (
-    <main>
+    <main id="scrollbar">
       <PostBoard user={user} />
     </main>
   )

@@ -112,7 +112,7 @@ const PostBoard = ({ user }) => {
           </Fade>
         </Modal>
       </header>
-      <div className="posts-container">
+      <div>
         <>
           {posts.map((post, idx) =>
             <PostItem
