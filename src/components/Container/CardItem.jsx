@@ -30,7 +30,7 @@ const CardItem = ({ card, handleDeleteCard, handleUpdateCard, user }) => {
           }
 
         </CardContent>
-        {user ? <CardActions>
+        {user && user.admin ? <CardActions>
           <Button size="small">
             <EditCardModal
               card={card}
