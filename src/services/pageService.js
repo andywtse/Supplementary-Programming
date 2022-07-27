@@ -13,8 +13,8 @@ async function createPage(newPage) {
 	return await res.json()
 }
 
-async function createSection(newSection) {
-  const res = await fetch(SERVER_URL, {
+async function createSection(newSection, pageId) {
+  const res = await fetch(`${SERVER_URL}/${pageId}/section`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -25,8 +25,8 @@ async function createSection(newSection) {
 	return await res.json()
 }
 
-async function createCard(newCard) {
-  const res = await fetch(SERVER_URL, {
+async function createCard(newCard,sectionId) {
+  const res = await fetch(`${SERVER_URL}/section/${sectionId}/card`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ async function updatePage(page) {
 }
 
 async function updateSection(section) {
-  const res = await fetch(`${SERVER_URL}/${section._id}`, {
+  const res = await fetch(`${SERVER_URL}/section/${section._id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ async function updateSection(section) {
 }
 
 async function updateCard(card) {
-  const res = await fetch(`${SERVER_URL}/${card._id}`, {
+  const res = await fetch(`${SERVER_URL}/section/card/${card._id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ async function deletePage(pageId) {
 }
 
 async function deleteSection(sectionId) {
-  const res = await fetch(`${SERVER_URL}/${sectionId}`, {
+  const res = await fetch(`${SERVER_URL}/section/${sectionId}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
@@ -94,7 +94,7 @@ async function deleteSection(sectionId) {
 }
 
 async function deleteCard(cardId) {
-  const res = await fetch(`${SERVER_URL}/${cardId}`, {
+  const res = await fetch(`${SERVER_URL}/section/card/${cardId}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
@@ -104,13 +104,17 @@ async function deleteCard(cardId) {
 }
 
 async function getAll() {
-  const res = await fetch(`${SERVER_URL}/`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${tokenService.getToken()}`
-    },
-  })
+  const res = await fetch(`${SERVER_URL}/`)
+  return await res.json()
+}
+
+async function getSections(id) {
+  const res = await fetch(`${SERVER_URL}/${id}`)
+  return await res.json()
+}
+
+async function getCards(id) {
+  const res = await fetch(`${SERVER_URL}/section/${id}`)
   return await res.json()
 }
 
@@ -125,4 +129,6 @@ export {
   updateSection,
   updateCard,
   getAll,
+  getSections,
+  getCards,
 }

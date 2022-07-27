@@ -82,10 +82,10 @@ const App = () => {
           path="/jobsites"
           element={<JobSites />} />
         {pages ?
-          pages.map(page => (
+          pages.map( (page,idx) => (
             <Route
               path={`/${page.title}`}
-              key={page.title}
+              key={idx}
               element={
                 <Page
                   page={page}

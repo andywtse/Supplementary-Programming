@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import * as pageService from '../../services/pageService'
 import AddSectionModal from "./AddSectionModal"
 import EditPageModal from "./EditPageModal"
+import Section from "./Section"
 
 const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
 
@@ -20,19 +21,35 @@ const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
 
   useEffect(() => {
     const fetchAllSections = async () => {
-      const sectionData = await pageService.getAll()
-      setSections(sectionData.sections)
+      const sectionData = await pageService.getSections(page._id)
+      setSections(sectionData)
     }
     fetchAllSections()
-  }, [])
+  },[])
 
-  const handleAddPage = async (formData) => {
-    const newSection = await pageService.createSection(formData)
+  const handleAddSection = async (formData) => {
+    const newSection = await pageService.createSection(formData,page._id)
     setSections([...sections, newSection])
   }
 
+  const handleUpdateSection = async (updatedSectionData) => {
+    const newSection = await pageService.updateSection(updatedSectionData);
+    const newSectionDataArray = sections.map((section) =>
+      section._id === newSection._id ? newSection : section
+    );
+    setSections([...newSectionDataArray]);
+  };
+
+  const handleDeleteSection = async (sectionId) => {
+    const deletedSection = await pageService.deleteSection(sectionId);
+    const newSectionsArray = sections.filter(
+      (section) => section._id !== deletedSection._id
+    );
+    setSections(newSectionsArray);
+  }
+
   return (
-    <main>
+    <main id="scrollbar">
 
 
       <div>
@@ -46,8 +63,24 @@ const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
                 <span className="text-lg">Options</span>
               </Button>
             </div>
-
           </div>
+
+          { sections ? 
+            <>
+              {sections.map( (section,idx) => (
+                <Section 
+                  key={idx}
+                  section={section}
+                  handleDeleteSection={handleDeleteSection}
+                  handleUpdateSection={handleUpdateSection}
+                />
+              ))}
+            </>
+            :
+            ""
+          }
+
+          {/* Menu options */}
           <Menu
             sx={{ mt: '45px' }}
             id="menu-appbar"
@@ -64,16 +97,21 @@ const Pages = ({ page,handleDeletePage,handleUpdatePage }) => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
+            {/* Adds Section */}
             <MenuItem key='add-section-modal' onClick={handleCloseUserMenu}>
               <Typography textAlign="center" component={'span'}>
-                <AddSectionModal handleAddPage={handleAddPage}/>
+                <AddSectionModal handleAddSection={handleAddSection}/>
               </Typography>
             </MenuItem>
+
+            {/* Edits Page */}
             <MenuItem key='edit-page-modal' onClick={handleCloseUserMenu}>
               <Typography textAlign="center" component={'span'}>
                 <EditPageModal page={page} handleUpdatePage={handleUpdatePage}/>
               </Typography>
             </MenuItem>
+
+            {/* Delete Page */}
             <MenuItem key='delete-page' onClick={handleCloseUserMenu}>
               <Typography textAlign="center" component={'span'}>
                 <Button

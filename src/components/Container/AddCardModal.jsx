@@ -3,7 +3,7 @@ import { useState } from 'react'
 //* Package Imports *//
 import { Modal, Box, Typography, Button } from "@mui/material";
 
-const AddSectionModal = ({handleAddSection}) => {
+const AddSectionModal = ({ handleAddCard }) => {
 
   const style = {
     position: "absolute",
@@ -15,10 +15,11 @@ const AddSectionModal = ({handleAddSection}) => {
     color: "white",
   };
 
-  const [message, setMessage] = useState([''])
   const [formData, setFormData] = useState({
+    header: '',
     title: '',
     description: '',
+    url: 'https://',
   })
 
   // MUI
@@ -26,24 +27,21 @@ const AddSectionModal = ({handleAddSection}) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setFormData({
+      header: '',
       title: '',
       description: '',
+      url: 'https://',
     })
     setOpen(false);
   }
 
-  const updateMessage = msg => {
-    setMessage(msg)
-  }
-
   const handleChange = e => {
-    updateMessage('')
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async evt => {
     evt.preventDefault()
-    handleAddSection(formData)
+    handleAddCard(formData)
     handleClose()
   }
 
@@ -53,7 +51,7 @@ const AddSectionModal = ({handleAddSection}) => {
         sx={{ p: 0 }}
         onClick={handleOpen}
       >
-        Add New Section
+        Add New Card
       </Button>
       <Modal
         open={open}
@@ -63,17 +61,27 @@ const AddSectionModal = ({handleAddSection}) => {
       >
         <Box sx={style}>
           <Typography id='modal-modal-title' variant='h6' component='h2'>
-            Add New Section
-          </Typography>
-          <Typography>
-            {message}
+            Add New Card
           </Typography>
           <Typography id='modal-modal-description' component={'span'} sx={{ mt: 2 }}>
             <form className="flex flex-col gap-6 pt-4" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="category-input">
-                    Title <span>*</span>
+                    Header <span>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Header"
+                    name="header"
+                    value={formData.header}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="category-input">
+                    Title
                   </label>
                   <input
                     type="text"
@@ -81,7 +89,6 @@ const AddSectionModal = ({handleAddSection}) => {
                     name="title"
                     value={formData.title}
                     onChange={handleChange}
-                    required
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -93,6 +100,18 @@ const AddSectionModal = ({handleAddSection}) => {
                     placeholder="Description"
                     name="description"
                     value={formData.description}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="category-input">
+                    URL
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="URL"
+                    name="url"
+                    value={formData.url}
                     onChange={handleChange}
                   />
                 </div>
