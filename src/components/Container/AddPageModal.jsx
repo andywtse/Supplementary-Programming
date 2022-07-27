@@ -75,7 +75,7 @@ const AddPageModal = ({handleAddPage}) => {
                   </label>
                   <input
                     type="text"
-                    placeholder="Title"
+                    placeholder="Title (No Spaces)"
                     name="title"
                     value={formData.title}
                     onChange={handleChange}

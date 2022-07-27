@@ -12,10 +12,10 @@ const CardItem = ({ card, handleDeleteCard, handleUpdateCard, user }) => {
     <>
       <div className="card-item-container">
         <CardContent>
-          <Typography className="card-item" sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          <Typography className="card-item" variant="h4" color="text.secondary" gutterBottom>
             {card.header}
           </Typography>
-          <Typography className="card-item" variant="h5" component="div">
+          <Typography className="card-item" variant="h6" component="div">
             {card.title}
           </Typography>
           <Typography className="card-item" sx={{ mb: 1.5 }} color="text.secondary">
