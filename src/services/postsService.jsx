@@ -48,7 +48,6 @@ async function getAll() {
 }
 
 async function createReply(newReplyData, id) {
-  console.log(newReplyData)
   const res = await fetch(`${SERVER_URL}/${id}/replies`, {
     method: 'POST',
     headers: {

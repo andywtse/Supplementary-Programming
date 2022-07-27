@@ -47,7 +47,7 @@ code {
   flex-wrap: wrap;
 }
 
-input {
+input, textarea {
   background: rgba(217, 216, 216, 0.111);
   backdrop-filter: blur( 9px );
   -webkit-backdrop-filter: blur( 9px );

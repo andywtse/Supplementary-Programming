@@ -44,7 +44,7 @@ return (
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               <>
-              <AddReply post={post} handleAddReply={handleAddReply}/>
+              <AddReply post={post} handleAddReply={handleAddReply} handleClose={handleClose}/>
               </>
             </Typography>
           </Box>

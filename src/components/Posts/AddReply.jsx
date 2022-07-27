@@ -1,7 +1,7 @@
 //* React Hooks *//
 import { useState, useRef, useEffect } from 'react'
 
-const AddReply = ({ post, handleAddReply }) => {
+const AddReply = ({ post, handleAddReply, handleClose }) => {
   //* State *//
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
@@ -22,13 +22,14 @@ const AddReply = ({ post, handleAddReply }) => {
   const handleSubmit = evt => {
 		evt.preventDefault()
     handleAddReply(formData, post._id)
+    handleClose()
 	}
   
   return (
     <>
-      <form ref={formElement} className="" onSubmit={handleSubmit}>
-        <div className="">
-          <div className="">
+      <form ref={formElement} onSubmit={handleSubmit}>
+        <div>
+          <div>
             {/* <label htmlFor="content-input">
               Content
             </label> */}

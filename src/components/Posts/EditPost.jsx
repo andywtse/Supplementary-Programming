@@ -26,10 +26,10 @@ const EditPost = ({ post, handleUpdatePost }) => {
 
   return (
     <>
-      <form ref={formElement} className="flex flex-col gap-6 pt-4" onSubmit={handleSubmit}>
-        <div className="flex justify-between w-full gap-6">
-          <div className="flex flex-col gap-2 w-2/4">
-            <label htmlFor="title-input">
+      <form ref={formElement} onSubmit={handleSubmit}>
+        <div>
+          <div>
+            <label>
               Title <span>*</span>
             </label>
             <input 
@@ -40,8 +40,8 @@ const EditPost = ({ post, handleUpdatePost }) => {
               onChange={handleChange} 
             />
           </div>
-          <div className="flex flex-col gap-2 w-2/4">
-            <label htmlFor="content-input">
+          <div>
+            <label>
               Content <span>*</span>
             </label>
             <input 
